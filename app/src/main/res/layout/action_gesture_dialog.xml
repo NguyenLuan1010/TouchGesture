@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_top_radius_15"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/archivo"
+        android:paddingHorizontal="10dp"
+        android:paddingTop="10dp"
+        android:text="@string/add_gesture"
+        android:textColor="@color/orange"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_description"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/archivo"
+        android:paddingHorizontal="10dp"
+        android:text="@string/please_draw_a_gesture_to_add_for_open_your_app"
+        android:textColor="@color/orange"
+        android:textSize="15sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="350dp">
+
+        <android.gesture.GestureOverlayView
+            android:id="@+id/gesture_overlay_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="10dp"
+            android:background="@drawable/bg_white_radius_8"
+            android:backgroundTint="@color/gray_slight"
+            android:elevation="3dp"
+            android:gestureColor="@color/orange"
+            android:gestureStrokeType="multiple" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_file"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerInParent="true"
+            android:elevation="3dp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/gesture" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_add_new"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/bg_white_radius_8"
+            android:backgroundTint="@color/orange"
+            android:fontFamily="@font/archivo"
+            android:text="@string/submit"
+            android:textColor="@color/white" />
+
+        <ProgressBar
+            android:id="@+id/progress_circular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:theme="@style/ProgressBarStyle"
+            android:visibility="invisible" />
+    </RelativeLayout>
+</LinearLayout>

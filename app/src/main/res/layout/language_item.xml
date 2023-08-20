@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/language_item_layout"
+    android:layout_marginHorizontal="20dp"
+    android:layout_height="wrap_content">
+
+    <CheckBox
+        android:id="@+id/check_box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/english"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?selectableItemBackground"
+        android:paddingHorizontal="20dp"
+        android:fontFamily="@font/archivo"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        tools:targetApi="m" />
+
+</LinearLayout>

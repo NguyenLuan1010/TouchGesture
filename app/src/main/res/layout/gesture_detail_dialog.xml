@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/img_gesture"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="10dp"
+        android:padding="20dp"
+        android:background="@drawable/bg_white_radius_8"
+        android:backgroundTint="@color/gray_slight"
+        android:elevation="3dp"
+        android:gestureColor="@color/orange"
+        android:gestureStrokeType="multiple" />
+</LinearLayout>

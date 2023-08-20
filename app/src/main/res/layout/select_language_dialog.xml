@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginHorizontal="10dp"
+    android:background="@drawable/bg_border_2_solid_orange"
+    android:backgroundTint="@color/white"
+    android:elevation="3dp"
+    android:paddingHorizontal="10dp">
+
+    <TextView
+        android:id="@+id/tv_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:drawablePadding="10dp"
+        android:fontFamily="@font/archivo"
+        android:text="@string/language"
+        android:textColor="@color/orange"
+        android:textSize="20sp"
+        app:drawableStartCompat="@drawable/baseline_language_24"
+        app:drawableTint="@color/orange" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcv_language"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_header"
+        android:fadingEdge="horizontal|vertical"
+        android:fadingEdgeLength="50dp"
+        android:orientation="vertical"
+        android:requiresFadingEdge="horizontal|vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/language_item"/>
+
+    <TextView
+        android:id="@+id/tv_apply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rcv_language"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/bg_border_2_solid_orange"
+        android:backgroundTint="@color/orange"
+        android:fontFamily="@font/archivo"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="10dp"
+        android:text="@string/apply"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+</RelativeLayout>

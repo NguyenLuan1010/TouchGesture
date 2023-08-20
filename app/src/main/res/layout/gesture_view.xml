@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="400dp"
+    android:id="@+id/draw_gesture"
+    android:orientation="vertical">
+
+    <android.gesture.GestureOverlayView
+        android:id="@+id/gesture_view"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:gestureStrokeType="multiple"
+        android:background="@drawable/layout_radius">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/draw_something"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="#A8BFBABA"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="@string/app_name"
+            android:textColor="@color/gray"
+            android:layout_gravity="center|bottom"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"/>
+    </android.gesture.GestureOverlayView>
+</RelativeLayout>

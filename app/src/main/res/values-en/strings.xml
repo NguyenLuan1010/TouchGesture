@@ -1,0 +1,146 @@
+<resources>
+    <string name="app_name">Touch Gesture</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="package_app">com.dyson.tech.touchgesture</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="alert_back_press">Press again to exit</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!--    Home Fragment-->
+    <string name="language">Language</string>
+    <string name="background_color">Background Color</string>
+    <string name="set_up_gesture">Gesture setting</string>
+    <string name="icon">Icons</string>
+    <string name="notes_setting">Notes Setting</string>
+    <string name="buy_an_upgrade">Buy an upgrade</string>
+    <string name="rate_app">Rate App</string>
+    <string name="share">Share</string>
+    <string name="contact">Contact</string>
+    <string name="welcome">Welcome to Touch Gesture !</string>
+    <string name="utilities">Utilities</string>
+    <string name="setting_">Setting</string>
+
+    <!--    Select Theme App Dialog-->
+    <string name="select_theme">Select Themes</string>
+    <string name="cancel">Cancel</string>
+
+    <!--    Applications Fragment-->
+    <string name="recommend">Recommendations</string>
+    <string name="click_to_add">Click to set the gesture for the app</string>
+    <string name="had_gesture">Had Gesture</string>
+    <string name="today">Today</string>
+    <string name="click_to_see_detail">Click to see detail</string>
+    <string name="click_to_see_gesture">Click to see gestures</string>
+    <string name="something_went_wrong">Something went wrong. Please try again !</string>
+    <string name="not_gesture_in_here">There are no gestures in here</string>
+    <string name="nothing_in_here">Nothing in here</string>
+
+    <string name="add_new">Add New</string>
+
+    <!--    Permission X-->
+    <string name="permission_button_positive">OK</string>
+    <string name="permission_button_negative">Cancel</string>
+    <string name="permission_button_go_setting">Go setting</string>
+    <string name="permission_forward_to_settings">You need to allow necessary permissions in Settings manually</string>
+    <string name="permission_explain_read_package_usage_stats">Touch Gesture needs this permission to list the most used apps and suggest apps that use gestures</string>
+    <string name="app_usage_stats_permission">App Usage Stats Permission</string>
+
+    <string name="permission_explain_bluetooth_connect">Touch Gesture needs this permission to for you can turn on or turn off from this app</string>
+    <string name="bluetooth_connect_permission">Bluetooth Permission</string>
+    <string name="please_get_bluetooth_connect_permission_in_permission_list">Please get Bluetooth Connect Permission in Permissions List </string>
+
+    <string name="get_permission">Get Permission</string>
+
+    <!--    Loading Dialog-->
+    <string name="please_wait">Please wait....</string>
+
+    <!--    Notification-->
+    <string name="home_button_is_running">Home Button is running</string>
+    <string name="you_can_close_the_button">You can close the button</string>
+    <string name="close_button">Close Button</string>
+    <string name="dont_forget_your_task">Don\'t forget your task.You have 5 minutes to prepare !</string>
+    <string name="at">at: </string>
+
+
+    <!--    First Menu Task-->
+    <string name="lock">Lock</string>
+    <string name="gesture">Gesture</string>
+    <string name="normal">Normal</string>
+    <string name="setting">Setting</string>
+    <string name="silent">Silent</string>
+    <string name="rang">Rang</string>
+    <string name="home">Home</string>
+
+    <!--    Second Menu Task -->
+    <string name="bluetooth">Bluetooth</string>
+    <string name="wifi">Wifi</string>
+    <string name="lock_orientation">Lock Orientation</string>
+    <string name="back">Back</string>
+    <string name="volume_up">Volume Up</string>
+    <string name="location">Location</string>
+    <string name="flash">Flash</string>
+    <string name="this_device_not_flash">This device doesn\'t have flash</string>
+    <string name="volume_down">Volume Down</string>
+
+    <!--    Add Gesture Dialog-->
+    <string name="add_gesture">Add Gesture</string>
+    <string name="please_draw_a_gesture_to_add_for_open_your_app">Please draw a gesture to add to open your app</string>
+    <string name="edit_gesture">Edit Gesture</string>
+    <string name="please_draw_a_gesture_to_edit_for_open_your_app">Please draw a gesture to edit to open your app</string>
+    <string name="add_new_gesture">Add New Gesture</string>
+    <string name="submit">Submit</string>
+    <string name="please_draw_something">Please draw something !</string>
+    <string name="add_gesture_success">Add gesture successfully !</string>
+    <string name="please_select_another_app">Please select another app !</string>
+
+    <!--    Gesture Setting-->
+    <string name="gestures_list">Gestures List</string>
+    <string name="you_can_set_up_for_the_gesture_app_such_as_edit_delete_search">- You can set up for the gesture app such as : Edit, Delete,Search.\n- Tap to see gesture.</string>
+    <string name="edit_gesture_success">Edit gesture successfully !</string>
+    <string name="edit_gesture_fail">Fail to edit gesture !</string>
+    <string name="delete_gesture_success">Delete gesture successfully !</string>
+    <string name="delete_gesture_fail">Fail to delete gesture !</string>
+    <string name="delete_gesture">Delete Warning</string>
+    <string name="confirm_to_delete_gesture">Are you sure to delete this gesture ?</string>
+    <string name="draw_something">Draw Something</string>
+
+    <!--    Notes Setting -->
+    <string name="notes">Notes</string>
+    <string name="all">All</string>
+    <string name="time_filter">Time Filter</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+
+    <!--    Action Note Dialog-->
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="start_time_format">Start Time (dd-MM-yyyy HH:mm)</string>
+    <string name="end_time_format">End Time (dd-MM-yyyy HH:mm)</string>
+    <string name="start_time">Start Time</string>
+    <string name="end_time">End Time</string>
+    <string name="delete_note_confirm">Are you sure to delete this note ?</string>
+    <string name="add_note_success">Add a note successfully !</string>
+    <string name="update_note_success">Update a note successfully !</string>
+    <string name="title_and_start_time_must_be_entered_completely">The title and Start time must be entered completely</string>
+    <string name="time_must_be_after_the_current_time">Time must be after the current time</string>
+    <string name="end_time_must_be_after_start_time">The end time must be after the start time</string>
+
+    <string name="select_icon_for_home_button">Select Icon for Home Button</string>
+    <string name="select">Select</string>
+    <string name="english">English</string>
+    <string name="viet_nam">VietNam</string>
+    <string name="apply">Apply</string>
+
+
+    <string name="app_on_device">Apps On Device</string>
+    <string name="click_to_add_new">Click to add new</string>
+</resources>

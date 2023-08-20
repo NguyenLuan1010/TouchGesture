@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/orange</item>
+        <item name="colorPrimaryDark">@color/orange_dark</item>
+        <item name="colorAccent">@color/orange_slight</item>
+    </style>
+
+    <style name="SwitchTextAppearance">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#212121</item>
+    </style>
+
+    <style name="ProgressBarStyle">
+        <item name="colorAccent">@color/orange</item>
+    </style>
+
+    <style name="WhiteProgressBarStyle">
+        <item name="colorAccent">@color/white</item>
+    </style>
+</resources>

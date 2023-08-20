@@ -1,0 +1,144 @@
+<resources>
+    <string name="app_name">Touch Gesture</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="package_app">com.dyson.tech.touchgesture</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="alert_back_press">Press again to exit</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!--    Home Fragment-->
+    <string name="language">Ngôn ngữ</string>
+    <string name="background_color">Background Color</string>
+    <string name="set_up_gesture">Thiết lập cử chỉ</string>
+    <string name="icon">Icons</string>
+    <string name="notes_setting">Thiết lập nhắc nhở</string>
+    <string name="buy_an_upgrade">Mua VIP</string>
+    <string name="rate_app">Đánh giá</string>
+    <string name="share">Chia sẻ</string>
+    <string name="contact">Liên hệ</string>
+    <string name="welcome">Chào mừng đến Touch Gesture !</string>
+    <string name="utilities">Tiện ích</string>
+    <string name="setting_">Thiết lập</string>
+    <!--    Select Theme App Dialog-->
+    <string name="select_theme">Chọn chủ đề</string>
+    <string name="cancel">Hủy</string>
+
+    <!--    Applications Fragment-->
+    <string name="recommend">Gợi ý ứng dụng</string>
+    <string name="click_to_add">Nhấp để thiết lập cử chỉ cho ứng dụng</string>
+    <string name="had_gesture">Had Gesture</string>
+    <string name="today">Hôm nay</string>
+    <string name="click_to_see_detail">Nhấp để xem chi tiết</string>
+    <string name="click_to_see_gesture">Nhấp để xem cử chỉ</string>
+    <string name="something_went_wrong">Có lỗi xảy ra , thử lại sau !</string>
+    <string name="not_gesture_in_here">Không có cử chỉ nào ở đây</string>
+    <string name="nothing_in_here">Trống</string>
+
+    <string name="add_new">Thêm mới</string>
+
+    <!--    Permission X-->
+    <string name="permission_button_positive">OK</string>
+    <string name="permission_button_negative">Hủy</string>
+    <string name="permission_button_go_setting">Đi đến thiết lập</string>
+    <string name="permission_forward_to_settings">Bạn cần thiết lập một số yêu cầu trong phần cài đặt</string>
+    <string name="permission_explain_read_package_usage_stats">Touch Gesture cần quyền truy cập này đưa ra gợi ý những ứng dụng được sử dụng nhiều nhất</string>
+    <string name="app_usage_stats_permission">App Usage Stats Permission</string>
+
+    <string name="permission_explain_bluetooth_connect">Touch Gesture cần quyền truy cập này để người dùng có thể bật tắt blutooth từ ứng dụng</string>
+    <string name="bluetooth_connect_permission">Quyền truy cập Bluetooth</string>
+    <string name="please_get_bluetooth_connect_permission_in_permission_list">Please get Bluetooth Connect Permission in Permissions List </string>
+
+    <string name="get_permission">Thiết lập</string>
+
+    <!--    Loading Dialog-->
+    <string name="please_wait">Please wait....</string>
+
+    <!--    Notification-->
+    <string name="home_button_is_running">Ứng dụng đang chạy</string>
+    <string name="you_can_close_the_button">Bạn có thể đóng nút home</string>
+    <string name="close_button">Đóng</string>
+    <string name="dont_forget_your_task">Đừng quên nhiệm vụ nhé !</string>
+    <string name="at"> vào: </string>
+
+
+    <!--    First Menu Task-->
+    <string name="lock">Lock</string>
+    <string name="gesture">Gesture</string>
+    <string name="normal">Normal</string>
+    <string name="setting">Setting</string>
+    <string name="silent">Silent</string>
+    <string name="rang">Rang</string>
+    <string name="home">Home</string>
+
+    <!--    Second Menu Task -->
+    <string name="bluetooth">Bluetooth</string>
+    <string name="wifi">Wifi</string>
+    <string name="lock_orientation">Lock Orientation</string>
+    <string name="back">Back</string>
+    <string name="volume_up">Volume Up</string>
+    <string name="location">Location</string>
+    <string name="flash">Flash</string>
+    <string name="this_device_not_flash">This device doesn\'t have flash</string>
+    <string name="volume_down">Volume Down</string>
+
+    <!--    Add Gesture Dialog-->
+    <string name="add_gesture">Thêm Cử chỉ</string>
+    <string name="please_draw_a_gesture_to_add_for_open_your_app">Hãy vẽ để mở ứng dụng thông qua cử chỉ</string>
+    <string name="edit_gesture">Chỉnh sửa cử chỉ</string>
+    <string name="please_draw_a_gesture_to_edit_for_open_your_app">Vẽ để chỉnh sửa cử chỉ cho ứng dụng</string>
+    <string name="add_new_gesture">Thêm mới</string>
+    <string name="submit">Hoàn thành</string>
+    <string name="please_draw_something">Hãy vẽ gì đó !</string>
+    <string name="add_gesture_success">Thêm cử chỉ thành công !</string>
+    <string name="please_select_another_app">Hãy chọn ứng dụng khác !</string>
+
+    <!--    Gesture Setting-->
+    <string name="gestures_list">Danh sách ứng dụng</string>
+    <string name="you_can_set_up_for_the_gesture_app_such_as_edit_delete_search">- Bạn có thể thiết lập cử chỉ với : Chỉnh sửa, Xóa,Tìm kiếm.\n- Nhấn để xem chi tiết cử chỉ .</string>
+    <string name="edit_gesture_success">Đã cập nhật cử chỉ thành công !</string>
+    <string name="edit_gesture_fail">Cập nhật thất bại !</string>
+    <string name="delete_gesture_success">Đã xóa cử chỉ !</string>
+    <string name="delete_gesture_fail">Xóa cử chỉ thất bại !</string>
+    <string name="delete_gesture">Cảnh báo</string>
+    <string name="confirm_to_delete_gesture">Bạn có chắc chắn muốn xóa cử chỉ này ?</string>
+    <string name="draw_something">Draw Something</string>
+
+    <!--    Notes Setting -->
+    <string name="notes">Ghi chú </string>
+    <string name="all">Tất cả</string>
+    <string name="time_filter">Thời gian</string>
+    <string name="from">Từ :</string>
+    <string name="to">đến :</string>
+
+    <!--    Action Note Dialog-->
+    <string name="title">Tiêu đề</string>
+    <string name="description">Mô tả</string>
+    <string name="start_time_format">Bắt đầu (dd-MM-yyyy HH:mm)</string>
+    <string name="end_time_format">Kết thúc (dd-MM-yyyy HH:mm)</string>
+    <string name="start_time">Bắt đầu</string>
+    <string name="end_time">Kết thúc</string>
+    <string name="delete_note_confirm">Bạn chắc chắn muốn xóa ghi chú này ?</string>
+    <string name="add_note_success">Đã thêm ghi chú mới !</string>
+    <string name="update_note_success">Cập nhật thành công !</string>
+    <string name="title_and_start_time_must_be_entered_completely">Tiêu đề và thời gian bắt đầu không được bỏ trống</string>
+    <string name="time_must_be_after_the_current_time">Thời gian phải xảy ra sau thời gian hiện tại</string>
+    <string name="end_time_must_be_after_start_time">Thời gian kết thúc phải xảy ra sau thời gian bắt đầu</string>
+
+    <string name="select_icon_for_home_button">Chọn chủ đề cho nút home</string>
+    <string name="select">Chọn</string>
+    <string name="english">English</string>
+    <string name="viet_nam">VietNam</string>
+    <string name="apply">Áp dụng</string>
+
+    <string name="app_on_device">Ứng dụng trên thiết bị</string>
+    <string name="click_to_add_new">Nhấp để tạo mới</string>
+</resources>
