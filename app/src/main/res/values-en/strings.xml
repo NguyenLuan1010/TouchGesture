@@ -1,4 +1,8 @@
 <resources>
+    <string name="banner_ads_id">ca-app-pub-7679139065107331/9247014605</string>
+    <string name="intermediate_ads_id">ca-app-pub-7679139065107331/9243145173</string>
+    <string name="purchase_id">ads_block_purchase</string>
+
     <string name="app_name">Touch Gesture</string>
     <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="package_app">com.dyson.tech.touchgesture</string>
@@ -6,6 +10,7 @@
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
+    <string name="no_ads">No Ads</string>
     <string name="previous">Previous</string>
     <string name="alert_back_press">Press again to exit</string>
 
@@ -24,6 +29,9 @@
     <string name="buy_an_upgrade">Buy an upgrade</string>
     <string name="rate_app">Rate App</string>
     <string name="share">Share</string>
+    <string name="no_more_ads_title">NO MORE ADS</string>
+    <string name="no_more_ads_description">Experience in-app utilities without ads</string>
+    <string name="buy">BUY</string>
     <string name="contact">Contact</string>
     <string name="welcome">Welcome to Touch Gesture !</string>
     <string name="utilities">Utilities</string>

@@ -64,19 +64,16 @@ public class IconsSelectDialog extends DialogFragment implements IconsListAdapte
 
     private List<Integer> getIconResource() {
         List<Integer> icons = new ArrayList<>();
-        icons.add(R.raw.icon_1);
-        icons.add(R.raw.icon_2);
-        icons.add(R.raw.icon_3);
-        icons.add(R.raw.icon_4);
-        icons.add(R.raw.icon_5);
-        icons.add(R.raw.icon_9);
-        icons.add(R.raw.icon_10);
-        icons.add(R.raw.icon_11);
-        icons.add(R.raw.icon_12);
-        icons.add(R.raw.icon_13);
-        icons.add(R.raw.icon_14);
-        icons.add(R.raw.icon_15);
-        icons.add(R.raw.icon_16);
+        icons.add(R.drawable.btn_home_1);
+        icons.add(R.drawable.btn_home_2);
+        icons.add(R.drawable.btn_home_3);
+        icons.add(R.drawable.btn_home_4);
+        icons.add(R.drawable.btn_home_5);
+        icons.add(R.drawable.btn_home_7);
+        icons.add(R.drawable.btn_home_8);
+        icons.add(R.drawable.btn_home_9);
+        icons.add(R.drawable.btn_home_10);
+        icons.add(R.drawable.btn_home_11);
         return icons;
     }
 

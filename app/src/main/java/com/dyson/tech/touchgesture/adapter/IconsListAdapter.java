@@ -8,6 +8,7 @@ import android.widget.CheckBox;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -43,7 +44,7 @@ public class IconsListAdapter extends RecyclerView.Adapter<IconsListAdapter.Icon
     public void onBindViewHolder(@NonNull IconListViewHolder holder,
                                  @SuppressLint("RecyclerView") int position) {
         int icon = iconsResource.get(position);
-        holder.iconView.setAnimation(icon);
+        holder.iconView.setImageResource(icon);
 
         holder.checkBox.setChecked(clickPosition == position);
 
@@ -76,7 +77,7 @@ public class IconsListAdapter extends RecyclerView.Adapter<IconsListAdapter.Icon
 
     public static class IconListViewHolder extends RecyclerView.ViewHolder {
         private final RelativeLayout iconLayout;
-        private final LottieAnimationView iconView;
+        private final AppCompatImageView iconView;
         private final CheckBox checkBox;
 
         public IconListViewHolder(@NonNull View itemView) {

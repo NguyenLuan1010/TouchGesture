@@ -1,4 +1,8 @@
 <resources>
+    <string name="banner_ads_id">ca-app-pub-7679139065107331/9247014605</string>
+    <string name="intermediate_ads_id">ca-app-pub-7679139065107331/9243145173</string>
+    <string name="purchase_id">ads_block_purchase</string>
+
     <string name="app_name">Touch Gesture</string>
     <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="package_app">com.dyson.tech.touchgesture</string>
@@ -18,6 +22,10 @@
     <!--    Home Fragment-->
     <string name="language">Ngôn ngữ</string>
     <string name="background_color">Background Color</string>
+    <string name="no_ads">Tắt Quảng Cáo</string>
+    <string name="no_more_ads_title">Không Hiển Thị Quảng Cáo</string>
+    <string name="no_more_ads_description">Trải nghiệm các tiện ích có trong ứng dụng với chức năng không hiển thị quảng cáo</string>
+    <string name="buy">MUA</string>
     <string name="set_up_gesture">Thiết lập cử chỉ</string>
     <string name="icon">Icons</string>
     <string name="notes_setting">Thiết lập nhắc nhở</string>

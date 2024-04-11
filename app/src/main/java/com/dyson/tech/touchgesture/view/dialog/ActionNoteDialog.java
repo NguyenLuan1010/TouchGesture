@@ -1,5 +1,7 @@
 package com.dyson.tech.touchgesture.view.dialog;
 
+import static android.content.Context.POWER_SERVICE;
+
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -7,6 +9,7 @@ import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -93,6 +96,11 @@ public class ActionNoteDialog extends DialogFragment implements View.OnClickList
                 break;
             case R.id.btn_submit:
                 onClickSubmit();
+
+                PowerManager powerManager = (PowerManager) getActivity().getSystemService(POWER_SERVICE);
+                PowerManager.WakeLock wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
+                        "MyApp::MyWakelockTag");
+                wakeLock.acquire(10*60*1000L);
                 break;
         }
     }

@@ -22,6 +22,7 @@ import android.media.AudioManager;
 import android.os.Build;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -39,6 +40,7 @@ import android.widget.Toast;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.app.NotificationCompat;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
@@ -46,7 +48,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.airbnb.lottie.LottieAnimationView;
 import com.dyson.tech.touchgesture.R;
 import com.dyson.tech.touchgesture.adapter.TodayNotesAdapter;
 import com.dyson.tech.touchgesture.data.GestureFilesHelper;
@@ -214,8 +215,9 @@ public class ServiceBuilder implements LifecycleObserver {
         if (!homeIcon.isShown()) {
             SettingSharedPref mSetting = SettingSharedPref.getInstance(service);
 
-            LottieAnimationView buttonImage = homeIcon.findViewById(R.id.img_home_button);
-            buttonImage.setAnimation(mSetting.getBtnHomeTheme());
+            AppCompatImageView buttonImage = homeIcon.findViewById(R.id.img_home_button);
+            buttonImage.setImageResource(mSetting.getBtnHomeTheme());
+            Log.e("DEBUG", "showHomeButton: "+ mSetting.getBtnHomeTheme());
             mSetting.setOnBtnHomeChangeListener(value -> {
                 if (currentState == TYPE_ICON)
                     mWindowManager.removeView(homeIcon);

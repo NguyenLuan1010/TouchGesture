@@ -2,6 +2,7 @@ package com.dyson.tech.touchgesture.data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ public class SettingSharedPref {
 
     private static final String SHARED_NAME = "SettingSharedPref";
     private static final String BTN_HOME_THEME = "BTN_HOME_THEME";
+    private static final String CAN_SHOW_ADS = "CAN_SHOW_ADS";
     private static final String LANGUAGE = "LANGUAGE";
 
     private static SettingSharedPref instance;
@@ -33,18 +35,26 @@ public class SettingSharedPref {
 
     private final SharedPreferences.OnSharedPreferenceChangeListener
             onSharedPreferenceChangeListener = (sharedPreferences, key) -> {
-                if (key.equals(BTN_HOME_THEME) && listener != null) {
-                    listener.onChange(getBtnHomeTheme());
-                }
-            };
+        if (key.equals(BTN_HOME_THEME) && listener != null) {
+            listener.onChange(getBtnHomeTheme());
+        }
+    };
 
     public void setBtnHomeTheme(@DrawableRes int value) {
         mSharedPreferences.edit().putInt(BTN_HOME_THEME, value).apply();
     }
 
+    public void setShowAds(boolean canShow) {
+        mSharedPreferences.edit().putBoolean(CAN_SHOW_ADS, canShow).apply();
+    }
+
+    public boolean getShowAds() {
+        return mSharedPreferences.getBoolean(CAN_SHOW_ADS, true);
+    }
+
     @DrawableRes
     public int getBtnHomeTheme() {
-        return mSharedPreferences.getInt(BTN_HOME_THEME, R.raw.icon_16);
+        return mSharedPreferences.getInt(BTN_HOME_THEME, R.drawable.btn_home_1);
     }
 
     public void setOnBtnHomeChangeListener(BtnHomeChangeListener mListener) {
@@ -57,12 +67,12 @@ public class SettingSharedPref {
         mSharedPreferences.unregisterOnSharedPreferenceChangeListener(onSharedPreferenceChangeListener);
     }
 
-    public void setLanguage(String language){
+    public void setLanguage(String language) {
         mSharedPreferences.edit().putString(LANGUAGE, language).apply();
     }
 
-    public String getLanguage(){
-        return mSharedPreferences.getString(LANGUAGE,"English");
+    public String getLanguage() {
+        return mSharedPreferences.getString(LANGUAGE, "English");
     }
 
     public interface BtnHomeChangeListener {

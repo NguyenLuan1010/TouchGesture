@@ -13,6 +13,11 @@ import android.widget.RelativeLayout;
 
 import com.dyson.tech.touchgesture.R;
 import com.dyson.tech.touchgesture.adapter.TabChangeAdapter;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -22,6 +27,7 @@ public class HomeFragment extends Fragment {
     private ViewPager2 viewChange;
 
     private TabChangeAdapter adapter;
+//    private AdView mAdView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,12 +38,14 @@ public class HomeFragment extends Fragment {
 
         initView(view);
         setTabLayout();
+//        setAdView();
         return view;
     }
 
     private void initView(View view) {
         tabLayout = view.findViewById(R.id.tab_screen);
         viewChange = view.findViewById(R.id.view_change);
+//        mAdView = view.findViewById(R.id.adView);
     }
 
     private void setTabLayout() {
@@ -53,6 +61,19 @@ public class HomeFragment extends Fragment {
                     break;
             }
         }).attach();
+    }
+
+    private void setAdView(){
+        assert getActivity() != null;
+        MobileAds.initialize(getActivity(), new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+
+            }
+        });
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
     }
 
 }

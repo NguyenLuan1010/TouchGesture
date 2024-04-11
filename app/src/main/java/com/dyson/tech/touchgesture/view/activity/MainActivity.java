@@ -18,6 +18,7 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -38,6 +39,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
     @SuppressLint("StaticFieldLeak")
     private static LinearLayout toolBar;
 
@@ -107,6 +109,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void initItem() {
         ImageView imgMenu = findViewById(R.id.img_menu);
         drawerLayout = findViewById(R.id.navigation_layout);
+        navigationView = findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(this);
         toolBar = findViewById(R.id.tool_bar);
 
         imgMenu.setOnClickListener(view -> {
@@ -126,6 +130,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 clickShareApp();
                 break;
             case R.id.nav_contact:
+                sendEmail();
                 break;
         }
 
@@ -135,11 +140,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void clickRateApp() {
         try {
+            Log.e("DEBUG", "clickRateApp: "+getPackageName() );
             startActivity(new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("market://details?id=" + "com.correct.ielts.speaking.test")));
+                    Uri.parse("market://details?id=" + getPackageName())));
         } catch (ActivityNotFoundException e) {
             startActivity(new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("https://play.google.com/store/apps/details?id=" + "com.correct.ielts.speaking.test")));
+                    Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName())));
         }
     }
 
@@ -147,10 +153,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plan");
         String body = "Download this app";
-        String sub = "https://play.google.com/";
+        String sub = "https://play.google.com/store/apps/details?id=" + getPackageName();
         intent.putExtra(Intent.EXTRA_TEXT, body);
         intent.putExtra(Intent.EXTRA_TEXT, sub);
         startActivity(Intent.createChooser(intent, "Share using"));
+    }
+
+    private void sendEmail(){
+        Intent intent= new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_EMAIL,new String[]{"dysontechnology1010@gmail.com"});
+        intent.setType("message/rfc822");
+        startActivity(Intent.createChooser(intent,"Choose email client: "));
     }
 
     public static void setToolBar(boolean isShown) {

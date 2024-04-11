@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,11 +28,17 @@ import com.dyson.tech.touchgesture.view.activity.MainActivity;
 import com.dyson.tech.touchgesture.view.dialog.ActionNoteDialog;
 import com.dyson.tech.touchgesture.view.dialog.ConfirmDialog;
 import com.dyson.tech.touchgesture.view.dialog.LoadingDialog;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -44,7 +51,7 @@ public class NotesSettingFragment extends Fragment implements NotesListAdapter.A
     private SwipeRefreshLayout refreshLayout;
     private RecyclerView rcvNotesList;
     private FloatingActionButton btnAddNew;
-
+//    private AdView mAdView;
     private NotesListAdapter adapter;
 
     @Override
@@ -56,6 +63,7 @@ public class NotesSettingFragment extends Fragment implements NotesListAdapter.A
         setRcvNotesList();
         searchData();
         setRefreshLayout();
+//        setAdView();
         return view;
     }
 
@@ -67,6 +75,7 @@ public class NotesSettingFragment extends Fragment implements NotesListAdapter.A
         nothingLayout = view.findViewById(R.id.nothing_layout);
         tvTimeFilter = view.findViewById(R.id.tv_time_filter);
         tvTimeFilter.setOnClickListener(onClickListener);
+//        mAdView = view.findViewById(R.id.adView);
 
         refreshLayout = view.findViewById(R.id.swipe_refresh_layout);
         rcvNotesList = view.findViewById(R.id.rcv_notes_list);
@@ -103,12 +112,16 @@ public class NotesSettingFragment extends Fragment implements NotesListAdapter.A
 
         datePicker.show(getChildFragmentManager(), "DATE TIME RANGE");
         datePicker.addOnPositiveButtonClickListener(selection -> {
-            Long dateStart = selection.first;
-            Long dateEnd = selection.second;
-            String strStart = TimeHelper.init().getTime(dateStart, TimeHelper.DATE_FORMAT);
-            String strEnd = TimeHelper.init().getTime(dateEnd, TimeHelper.DATE_FORMAT);
-            tvTimeFilter.setText(strStart + " - " + strEnd);
-            setNotesByTime(dateStart, dateEnd);
+            try {
+                Long dateStart = selection.first;
+                Long dateEnd = selection.second;
+                String strStart = TimeHelper.init().getTime(dateStart, TimeHelper.DATE_FORMAT);
+                String strEnd = TimeHelper.init().getTime(dateEnd, TimeHelper.DATE_FORMAT);
+                tvTimeFilter.setText(strStart + " - " + strEnd);
+                setNotesByTime(dateStart, dateEnd);
+            }catch (Exception e){
+                Log.e("DEBUG", "clickTimeFilter: "+e);
+            }
         });
     }
 
@@ -178,6 +191,17 @@ public class NotesSettingFragment extends Fragment implements NotesListAdapter.A
         });
     }
 
+    private void setAdView(){
+        assert getActivity() != null;
+        MobileAds.initialize(getActivity(), new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
+    }
     @Override
     public void onClickLayout(Notes note) {
         ActionNoteDialog dialog = new ActionNoteDialog(ActionNoteDialog.EDIT_ACTION, note);

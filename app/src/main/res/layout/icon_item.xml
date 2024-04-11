@@ -8,7 +8,7 @@
     android:layout_marginHorizontal="20dp"
     android:background="@drawable/bg_border_2_solid_orange">
 
-    <com.airbnb.lottie.LottieAnimationView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/icon_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -36,6 +36,9 @@ public class GesturesListAdapter extends RecyclerView.Adapter<GesturesListAdapte
 
     @SuppressLint("NotifyDataSetChanged")
     public void filter(String query) {
+        if(query != null){
+            return;
+        }
         List<Apps> filteredList = new ArrayList<>();
 
         for (Apps data : appsList) {

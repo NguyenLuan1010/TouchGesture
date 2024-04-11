@@ -1,6 +1,7 @@
 package com.dyson.tech.touchgesture.utils;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -33,7 +34,8 @@ public class TimeHelper {
         try {
             return dateFormat.parse(dateTime).getTime();
         } catch (ParseException e) {
-            throw new RuntimeException(e);
+            Log.e("DEBUG", "getTimeMillis: "+ e );
+            return 0L;
         }
     }
 }

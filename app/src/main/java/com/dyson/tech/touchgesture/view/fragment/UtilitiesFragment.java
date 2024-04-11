@@ -29,6 +29,7 @@ import com.dyson.tech.touchgesture.model.Apps;
 import com.dyson.tech.touchgesture.model.Notes;
 import com.dyson.tech.touchgesture.presenter.ApplicationsPresenter;
 import com.dyson.tech.touchgesture.presenter.NotesPresenter;
+import com.dyson.tech.touchgesture.service.AdsShowingService;
 import com.dyson.tech.touchgesture.utils.ChangeScreen;
 import com.dyson.tech.touchgesture.view.ViewMainCallBack;
 import com.dyson.tech.touchgesture.view.dialog.ActionGestureDialog;
@@ -53,6 +54,7 @@ public class UtilitiesFragment extends Fragment implements
     private ApplicationsPresenter presenter;
     private RecommendAppsAdapter recommendAppsAdapter;
     private TodayNotesAdapter todayNotesAdapter;
+//    private AdsShowingService mAdsShowingService;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,6 +62,7 @@ public class UtilitiesFragment extends Fragment implements
         View view = inflater.inflate(R.layout.fragment_utilities, container, false);
 
         presenter = new ApplicationsPresenter(getActivity());
+//        mAdsShowingService = new AdsShowingService(getActivity());
         recommendAppsAdapter = new RecommendAppsAdapter(this);
        View v= LayoutInflater.from(getActivity())
                 .inflate(R.layout.ready_note_item, null);
@@ -85,10 +88,16 @@ public class UtilitiesFragment extends Fragment implements
         rcvRecommendApps.setAdapter(recommendAppsAdapter);
 
         todayNotesLayout.setOnClickListener(v -> {
+//            if (mAdsShowingService.canShowAds()) {
+//                mAdsShowingService.showAds();
+//            }
             ChangeScreen.init().replace(getActivity(), new NotesSettingFragment(), true);
         });
 
         recommendAppsLayout.setOnClickListener(v -> {
+//            if (mAdsShowingService.canShowAds()) {
+//                mAdsShowingService.showAds();
+//            }
             ChangeScreen.init().replace(getActivity(), new GesturesListFragment(), true);
         });
     }

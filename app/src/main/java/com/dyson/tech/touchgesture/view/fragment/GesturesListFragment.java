@@ -20,6 +20,7 @@ import com.dyson.tech.touchgesture.R;
 import com.dyson.tech.touchgesture.adapter.GesturesListAdapter;
 import com.dyson.tech.touchgesture.data.GestureFilesHelper;
 import com.dyson.tech.touchgesture.model.Apps;
+import com.dyson.tech.touchgesture.service.AdsShowingService;
 import com.dyson.tech.touchgesture.utils.ChangeScreen;
 import com.dyson.tech.touchgesture.view.AuthenticationCallBack;
 import com.dyson.tech.touchgesture.view.activity.MainActivity;
@@ -45,7 +46,6 @@ public class GesturesListFragment extends Fragment
 
     private GestureFilesHelper gestureFilesHelper;
     private GesturesListAdapter adapter;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -83,7 +83,8 @@ public class GesturesListFragment extends Fragment
         });
 
         btnAdd.setOnClickListener(viewRoot -> {
-            ChangeScreen.init().replace(getActivity(),new AppsOnDeviceFragment(),true);
+
+            ChangeScreen.init().replace(getActivity(), new AppsOnDeviceFragment(), true);
         });
     }
 

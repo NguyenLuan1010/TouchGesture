@@ -66,6 +66,9 @@ public class SelectLanguageDialog {
         adapter.setLanguages(languages);
 
         tvApplyLanguage.setOnClickListener(view -> {
+            if (adapter.getLanguageSelected() == null) {
+                return;
+            }
             String language = adapter.getLanguageSelected();
 
             if (language.equals(lngEnglish)) {
@@ -88,7 +91,7 @@ public class SelectLanguageDialog {
     }
 
     private void saveLanguageChange(String language) {
-        SettingSharedPref settingSharedPref= SettingSharedPref.getInstance(activity);
+        SettingSharedPref settingSharedPref = SettingSharedPref.getInstance(activity);
         settingSharedPref.setLanguage(language);
 
         activity.finish();

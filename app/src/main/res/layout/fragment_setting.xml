@@ -204,38 +204,37 @@
             tools:text="Viet Nam" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/buy_an_upgrade_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="5dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/bg_white_radius_8"
-        android:clickable="true"
-        android:elevation="3dp"
-        android:focusable="true"
-        android:foreground="?selectableItemBackground"
-        android:orientation="horizontal"
-        android:paddingHorizontal="20dp"
-        android:paddingVertical="20dp">
+<!--    <RelativeLayout-->
+<!--        android:id="@+id/buy_an_upgrade_layout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginHorizontal="5dp"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        android:background="@drawable/bg_white_radius_8"-->
+<!--        android:clickable="true"-->
+<!--        android:elevation="3dp"-->
+<!--        android:focusable="true"-->
+<!--        android:foreground="?selectableItemBackground"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:paddingHorizontal="20dp"-->
+<!--        android:paddingVertical="20dp">-->
 
-        <ImageView
-            android:id="@+id/img_shopping"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:src="@drawable/baseline_shopping_cart_24"
-            app:tint="@color/yellow" />
+<!--        <ImageView-->
+<!--            android:id="@+id/img_shopping"-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:src="@drawable/ad_block" />-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginHorizontal="20dp"
-            android:layout_toEndOf="@+id/img_shopping"
-            android:text="@string/buy_an_upgrade"
-            android:textColor="@color/black"
-            android:textSize="17sp" />
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:layout_marginHorizontal="20dp"-->
+<!--            android:layout_toEndOf="@+id/img_shopping"-->
+<!--            android:text="@string/no_ads"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="17sp" />-->
 
-    </RelativeLayout>
+<!--    </RelativeLayout>-->
 </LinearLayout>
