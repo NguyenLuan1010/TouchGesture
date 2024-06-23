@@ -2,6 +2,7 @@ package com.dyson.tech.touchgesture.view.fragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,15 +16,20 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.utils.Utils;
 import com.dyson.tech.touchgesture.R;
 import com.dyson.tech.touchgesture.adapter.RecommendAppsAdapter;
 import com.dyson.tech.touchgesture.data.GestureFilesHelper;
 import com.dyson.tech.touchgesture.model.Apps;
 import com.dyson.tech.touchgesture.presenter.ApplicationsPresenter;
+import com.dyson.tech.touchgesture.utils.PermissionUtils;
 import com.dyson.tech.touchgesture.view.ViewMainCallBack;
 import com.dyson.tech.touchgesture.view.activity.MainActivity;
 import com.dyson.tech.touchgesture.view.dialog.ActionGestureDialog;
 import com.dyson.tech.touchgesture.view.dialog.LoadingDialog;
+import com.permissionx.guolindev.callback.RequestCallback;
+
+import java.util.List;
 
 public class AppsOnDeviceFragment extends Fragment implements RecommendAppsAdapter.ActionRecommendApp {
 
@@ -33,6 +39,7 @@ public class AppsOnDeviceFragment extends Fragment implements RecommendAppsAdapt
     private SearchView searchView;
 
     private RecommendAppsAdapter adapter;
+    private ActionGestureDialog dialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -71,7 +78,7 @@ public class AppsOnDeviceFragment extends Fragment implements RecommendAppsAdapt
         });
     }
 
-    private void searchData(){
+    private void searchData() {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -95,15 +102,29 @@ public class AppsOnDeviceFragment extends Fragment implements RecommendAppsAdapt
     }
 
     @Override
-    public void onClickRecommendApp(Apps app) {
-        if (!GestureFilesHelper.isExistGestureAppFile(app)) {
-            ActionGestureDialog dialog = new ActionGestureDialog(getString(R.string.add_gesture),
-                    getString(R.string.please_draw_a_gesture_to_add_for_open_your_app),
-                    app, null);
-            dialog.show(getActivity().getSupportFragmentManager(), null);
-        } else {
-            Toast.makeText(getActivity(), getActivity().getString(R.string.please_select_another_app),
-                    Toast.LENGTH_LONG).show();
+    public void onPause() {
+        super.onPause();
+        if (dialog != null && dialog.isVisible()) {
+            dialog.dismiss();
         }
+    }
+
+    @Override
+    public void onClickRecommendApp(Apps app) {
+        PermissionUtils.requestPackageWriteExternalPermission(this, (allGranted, grantedList, deniedList) -> {
+            if (allGranted) {
+                if (!GestureFilesHelper.isExistGestureAppFile(app)) {
+                    new Handler(Looper.getMainLooper()).post(() -> {
+                        dialog = new ActionGestureDialog(getString(R.string.add_gesture),
+                                getString(R.string.please_draw_a_gesture_to_add_for_open_your_app),
+                                app, null);
+                        dialog.show(getActivity().getSupportFragmentManager(), null);
+                    });
+                } else {
+                    Toast.makeText(getActivity(), getActivity().getString(R.string.please_select_another_app),
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 }

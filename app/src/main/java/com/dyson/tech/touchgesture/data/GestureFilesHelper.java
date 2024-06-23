@@ -9,6 +9,7 @@ import android.gesture.GestureLibrary;
 import android.gesture.Prediction;
 import android.graphics.drawable.Drawable;
 import android.os.Environment;
+import android.util.Log;
 
 import com.dyson.tech.touchgesture.R;
 import com.dyson.tech.touchgesture.model.Apps;
@@ -36,6 +37,7 @@ public class GestureFilesHelper {
     private File gesFile;
 
     public void getAllFile(AuthenticationCallBack.GetGestureFilesCallBack callBack) {
+        Log.e("DEBUG", "getAllFile: " + Environment.getExternalStorageDirectory().getAbsolutePath());
         File mStoreFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath()
                 + FILE_APP);
         if (!mStoreFile.exists()) {
@@ -83,14 +85,14 @@ public class GestureFilesHelper {
     }
 
     public void checkGestureEqual(Gesture gesture,
-                                  AuthenticationCallBack.CheckGestureEqualCallBack callBack){
+                                  AuthenticationCallBack.CheckGestureEqualCallBack callBack) {
         File mStoreFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath()
                 + FILE_APP);
         if (!mStoreFile.exists()) {
             mStoreFile.mkdirs();
         }
         File[] files = mStoreFile.listFiles();
-        if(files != null){
+        if (files != null) {
             for (File f : files) {
 
                 if (f.isFile() && f.getName().contains(FILE_TYPE)) {
@@ -99,7 +101,7 @@ public class GestureFilesHelper {
                     objGestureLib.load();
 
                     List<Prediction> objPrediction = objGestureLib.recognize(gesture);
-                    if( objPrediction.size() > 0 && objPrediction.get(0).score > 2.0){
+                    if (objPrediction.size() > 0 && objPrediction.get(0).score > 2.0) {
                         Intent intentLauncher = context.getPackageManager()
                                 .getLaunchIntentForPackage(objPrediction.get(0).name);
                         if (intentLauncher != null) {
@@ -122,7 +124,9 @@ public class GestureFilesHelper {
     public void addToFile(Apps app,
                           AuthenticationCallBack.AddGestureCallBack callBack) {
         File storeFile = new File(PATH_ROOT + FILE_APP);
-        gesFile = new File(storeFile, app.getName() + FILE_TYPE);
+
+        String fileName = app.getName().replace(" ", "_");
+        gesFile = new File(storeFile, fileName + FILE_TYPE);
 
         if (!storeFile.exists()) {
             storeFile.mkdirs();
@@ -141,12 +145,16 @@ public class GestureFilesHelper {
 
         FileWriter writer = null;
         try {
-            writer = new FileWriter(gesFile);
+            if(!gesFile.createNewFile()){
+                Log.e("DEBUG", "Cannot created :"+gesFile.getAbsolutePath() );
+            }
 
+            writer = new FileWriter(gesFile);
+            Log.e("DEBUG", "execCreateGestureFile: " + gesFile.getAbsolutePath());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (saveGestureToFile(app,gesFile)) {
+        if (saveGestureToFile(app, gesFile)) {
 
             try {
                 if (writer != null)
@@ -162,22 +170,22 @@ public class GestureFilesHelper {
     }
 
     public void editGesture(Apps gestureApps,
-                            AuthenticationCallBack.EditGestureFileCallBack callBack){
-        File file = new File(PATH_ROOT+FILE_APP+gestureApps.getName());
-        if(clearTheFile(file)){
-            if(gestureApps.getGesture() == null){
+                            AuthenticationCallBack.EditGestureFileCallBack callBack) {
+        File file = new File(PATH_ROOT + FILE_APP + gestureApps.getName());
+        if (clearTheFile(file)) {
+            if (gestureApps.getGesture() == null) {
                 callBack.editFail(context.getString(R.string.edit_gesture_fail));
                 return;
             }
-            if(saveGestureToFile(gestureApps,file)){
-                callBack.editSuccess(gestureApps,context.getString(R.string.edit_gesture_success));
-            }else{
+            if (saveGestureToFile(gestureApps, file)) {
+                callBack.editSuccess(gestureApps, context.getString(R.string.edit_gesture_success));
+            } else {
                 callBack.editFail(context.getString(R.string.edit_gesture_fail));
             }
         }
     }
 
-    private boolean saveGestureToFile(Apps app,File file) {
+    private boolean saveGestureToFile(Apps app, File file) {
         GestureLibrary gestureLibraries = GestureLibraries.fromFile(file);
         gestureLibraries.addGesture(app.getStrPackage(), app.getGesture());
         return gestureLibraries.save();
@@ -197,8 +205,8 @@ public class GestureFilesHelper {
         return false;
     }
 
-    public boolean isDeletedFile(Apps gestureApps){
-        File file =new File(PATH_ROOT+FILE_APP+gestureApps.getName());
+    public boolean isDeletedFile(Apps gestureApps) {
+        File file = new File(PATH_ROOT + FILE_APP + gestureApps.getName());
         return file.delete();
     }
 }

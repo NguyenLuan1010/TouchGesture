@@ -63,6 +63,10 @@ public class HomeFragment extends Fragment {
         }).attach();
     }
 
+    public void setCurrentTabLayout(int tab){
+        viewChange.setCurrentItem(tab);
+    }
+
     private void setAdView(){
         assert getActivity() != null;
         MobileAds.initialize(getActivity(), new OnInitializationCompleteListener() {

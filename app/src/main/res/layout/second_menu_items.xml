@@ -236,7 +236,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:orientation="vertical"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -255,28 +255,6 @@
 
         <LinearLayout
             android:id="@+id/FlashLightOff"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="center"
-                android:src="@drawable/baseline_flash_off_24" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/flash"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="15sp" />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/FlashLightEnabled"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"

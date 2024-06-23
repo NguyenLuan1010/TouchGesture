@@ -1,5 +1,6 @@
 package com.dyson.tech.touchgesture.service;
 
+import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -80,6 +81,7 @@ public class HomeButtonService extends Service implements LifecycleObserver {
         SettingSharedPref.getInstance(this).removeOnBtnHomeChangeListener();
     }
 
+    @SuppressLint("ScheduleExactAlarm")
     private void buildAlarmTask(Notes note) {
         Intent intent = new Intent(HomeButtonService.this, AlarmReceiver.class);
         intent.putExtra(AlarmReceiver.NOTES_TRANSFER, note.getId());
@@ -97,6 +99,5 @@ public class HomeButtonService extends Service implements LifecycleObserver {
         calendar.add(Calendar.MINUTE, wakeUpBefore);
         return calendar.getTimeInMillis();
     }
-ddddd
 }
 

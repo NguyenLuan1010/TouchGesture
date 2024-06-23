@@ -25,6 +25,8 @@ public class RecommendAppsAdapter extends RecyclerView.Adapter<RecommendAppsAdap
 
     public RecommendAppsAdapter(ActionRecommendApp listener) {
         this.listener = listener;
+        appsList = new ArrayList<>();
+        filteredDataList = new ArrayList<>();
     }
 
     @SuppressLint("NotifyDataSetChanged")

@@ -122,15 +122,9 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
 
                 if (isChecked) {
                     if (hadOverlayPermission()) {
-                        PermissionUtils.requestBluetoothConnectPermission(SettingFragment.this,
-                                (allGranted, grantedList, deniedList) -> {
-                                    if (allGranted) {
-                                        startService(getActivity(), intent);
-                                    } else {
-                                        serviceAction.setChecked(false);
-                                    }
-                                });
+                        startService(getActivity(), intent);
                     } else {
+                        Log.d("DEBUG1", "giveOverlayPermission");
                         giveOverlayPermission();
                     }
                 } else {

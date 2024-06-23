@@ -32,6 +32,7 @@ import com.dyson.tech.touchgesture.utils.ChangeScreen;
 import com.dyson.tech.touchgesture.view.fragment.AppsOnDeviceFragment;
 import com.dyson.tech.touchgesture.view.fragment.GesturesListFragment;
 import com.dyson.tech.touchgesture.view.fragment.HomeFragment;
+import com.dyson.tech.touchgesture.view.fragment.NotesSettingFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.Locale;
@@ -61,6 +62,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (drawerLayout.isDrawerOpen(GravityCompat.START))
             drawerLayout.closeDrawer(GravityCompat.START);
 
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+        if(intent != null){
+           int receivedValue = intent.getIntExtra("note_view",1);
+           if(receivedValue == 1)
+               ChangeScreen.init().replace(MainActivity.this,new NotesSettingFragment(), false);
+        }
     }
 
     private void initView() {

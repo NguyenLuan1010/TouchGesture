@@ -59,6 +59,7 @@
     <string name="permission_button_go_setting">Đi đến thiết lập</string>
     <string name="permission_forward_to_settings">Bạn cần thiết lập một số yêu cầu trong phần cài đặt</string>
     <string name="permission_explain_read_package_usage_stats">Touch Gesture cần quyền truy cập này đưa ra gợi ý những ứng dụng được sử dụng nhiều nhất</string>
+    <string name="permission_write_external_storange">Touch Gesture cần quyền truy cập này để thêm những cử chỉ theo từng ứng dụng trên thiết bị này</string>
     <string name="app_usage_stats_permission">App Usage Stats Permission</string>
 
     <string name="permission_explain_bluetooth_connect">Touch Gesture cần quyền truy cập này để người dùng có thể bật tắt blutooth từ ứng dụng</string>

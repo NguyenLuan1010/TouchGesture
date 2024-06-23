@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -31,12 +32,14 @@ import com.dyson.tech.touchgesture.presenter.ApplicationsPresenter;
 import com.dyson.tech.touchgesture.presenter.NotesPresenter;
 import com.dyson.tech.touchgesture.service.AdsShowingService;
 import com.dyson.tech.touchgesture.utils.ChangeScreen;
+import com.dyson.tech.touchgesture.utils.PermissionUtils;
 import com.dyson.tech.touchgesture.view.ViewMainCallBack;
 import com.dyson.tech.touchgesture.view.dialog.ActionGestureDialog;
 import com.dyson.tech.touchgesture.view.dialog.ActionNoteDialog;
 import com.dyson.tech.touchgesture.view.dialog.ConfirmDialog;
 import com.dyson.tech.touchgesture.view.dialog.LoadingDialog;
 import com.dyson.tech.touchgesture.view.dialog.UsageStatsPermissionDialog;
+import com.permissionx.guolindev.callback.RequestCallback;
 
 import java.util.List;
 
@@ -54,7 +57,8 @@ public class UtilitiesFragment extends Fragment implements
     private ApplicationsPresenter presenter;
     private RecommendAppsAdapter recommendAppsAdapter;
     private TodayNotesAdapter todayNotesAdapter;
-//    private AdsShowingService mAdsShowingService;
+    //    private AdsShowingService mAdsShowingService;
+    private ActionGestureDialog actionGestureDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -64,7 +68,7 @@ public class UtilitiesFragment extends Fragment implements
         presenter = new ApplicationsPresenter(getActivity());
 //        mAdsShowingService = new AdsShowingService(getActivity());
         recommendAppsAdapter = new RecommendAppsAdapter(this);
-       View v= LayoutInflater.from(getActivity())
+        View v = LayoutInflater.from(getActivity())
                 .inflate(R.layout.ready_note_item, null);
         todayNotesAdapter = new TodayNotesAdapter(this);
         dialog = new LoadingDialog();
@@ -75,6 +79,14 @@ public class UtilitiesFragment extends Fragment implements
         getAppUsageStats();
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (dialog != null && dialog.isVisible()) {
+            dialog.dismiss();
+        }
     }
 
     private void initView(View view) {
@@ -149,7 +161,7 @@ public class UtilitiesFragment extends Fragment implements
 
     @Override
     public void onClickDetail(Notes note) {
-        ActionNoteDialog dialog = new ActionNoteDialog(ActionNoteDialog.EDIT_ACTION,note);
+        ActionNoteDialog dialog = new ActionNoteDialog(ActionNoteDialog.EDIT_ACTION, note);
         dialog.show(getActivity().getSupportFragmentManager(), null);
     }
 
@@ -219,19 +231,34 @@ public class UtilitiesFragment extends Fragment implements
                 });
             }
         });
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (actionGestureDialog != null && actionGestureDialog.isVisible()) {
+            actionGestureDialog.dismiss();
+        }
     }
 
     @Override
     public void onClickRecommendApp(Apps app) {
-        if (!GestureFilesHelper.isExistGestureAppFile(app)) {
-            ActionGestureDialog dialog = new ActionGestureDialog(getString(R.string.add_gesture),
-                    getString(R.string.please_draw_a_gesture_to_add_for_open_your_app),
-                    app, null);
-            dialog.show(getActivity().getSupportFragmentManager(), null);
-        } else {
-            Toast.makeText(getActivity(), getActivity().getString(R.string.please_select_another_app),
-                    Toast.LENGTH_LONG).show();
-        }
+        PermissionUtils.requestPackageWriteExternalPermission(this, (allGranted, grantedList, deniedList) -> {
+            if (allGranted) {
+                if (!GestureFilesHelper.isExistGestureAppFile(app)) {
+                    new Handler(Looper.getMainLooper()).post(() -> {
+                        actionGestureDialog = new ActionGestureDialog(getString(R.string.add_gesture),
+                                getString(R.string.please_draw_a_gesture_to_add_for_open_your_app),
+                                app, null);
+                        actionGestureDialog.show(getActivity().getSupportFragmentManager(), null);
+                    });
+                } else {
+                    Toast.makeText(getActivity(), getActivity().getString(R.string.please_select_another_app),
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 
     private void execMain(Runnable runnable) {

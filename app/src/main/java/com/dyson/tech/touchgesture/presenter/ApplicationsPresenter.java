@@ -97,7 +97,7 @@ public class ApplicationsPresenter {
             Drawable appIcon = packageManager.getApplicationIcon(appInfo);
 
             return new Apps(appIcon, appName, packageApp, null);
-        } catch (PackageManager.NameNotFoundException e) {
+        } catch (Exception e) {
             return null;
         }
 

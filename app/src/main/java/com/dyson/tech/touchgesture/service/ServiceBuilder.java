@@ -17,6 +17,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.gesture.GestureOverlayView;
 import android.graphics.PixelFormat;
+import android.hardware.camera2.CameraManager;
 import android.location.LocationManager;
 import android.media.AudioManager;
 import android.os.Build;
@@ -217,7 +218,7 @@ public class ServiceBuilder implements LifecycleObserver {
 
             AppCompatImageView buttonImage = homeIcon.findViewById(R.id.img_home_button);
             buttonImage.setImageResource(mSetting.getBtnHomeTheme());
-            Log.e("DEBUG", "showHomeButton: "+ mSetting.getBtnHomeTheme());
+            Log.e("DEBUG", "showHomeButton: " + mSetting.getBtnHomeTheme());
             mSetting.setOnBtnHomeChangeListener(value -> {
                 if (currentState == TYPE_ICON)
                     mWindowManager.removeView(homeIcon);
@@ -395,6 +396,7 @@ public class ServiceBuilder implements LifecycleObserver {
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                             Intent.FLAG_ACTIVITY_NEW_TASK |
                             Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra("note_view",1);
                     service.startActivity(intent);
                     showHomeButton();
 //                    showAddNoteTask();
@@ -537,7 +539,7 @@ public class ServiceBuilder implements LifecycleObserver {
 
     private LinearLayout btnWifi, btnTurnOnBluetooth, btnTurnOffBluetooth, btnVolumeUp,
             btnVolumeDown, btnFlashOn, btnFlashOff, btnTurnOnLocation, btnTurnOffLocation,
-            btnLockRotation, btnRotation, btnBackToFistMenu, btnFlashEnable;
+            btnLockRotation, btnRotation, btnBackToFistMenu;
 
     private BluetoothAdapter bluetoothAdapter;
 
@@ -564,8 +566,6 @@ public class ServiceBuilder implements LifecycleObserver {
         btnFlashOff.setOnClickListener(onClickOnSecondMenu);
         btnFlashOn = secondMenuTask.findViewById(R.id.FlashLightOn);
         btnFlashOn.setOnClickListener(onClickOnSecondMenu);
-        btnFlashEnable = secondMenuTask.findViewById(R.id.FlashLightEnabled);
-        btnFlashEnable.setOnClickListener(onClickOnSecondMenu);
         btnTurnOnLocation = secondMenuTask.findViewById(R.id.TurnOnLocation);
         btnTurnOnLocation.setOnClickListener(onClickOnSecondMenu);
         btnTurnOffLocation = secondMenuTask.findViewById(R.id.TurnOffLocation);
@@ -578,7 +578,6 @@ public class ServiceBuilder implements LifecycleObserver {
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         getBlueToothStatus();
         getFlashStatus();
-        hasCamera();
         getLocationStatus();
     }
 
@@ -666,6 +665,13 @@ public class ServiceBuilder implements LifecycleObserver {
                     break;
                 case R.id.FlashLightOff:
                 case R.id.FlashLightOn:
+                    if (service.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
+                        if (!service.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
+                            Toast.makeText(service, service.getString(R.string.this_device_not_flash),
+                                    Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                    }
                     if (isFlashActive) {
                         btnFlashOff.setVisibility(View.VISIBLE);
                         btnFlashOn.setVisibility(View.GONE);
@@ -677,11 +683,6 @@ public class ServiceBuilder implements LifecycleObserver {
                         itemsFeature.actionFlash(true);
                         isFlashActive = true;
                     }
-                    break;
-                case R.id.FlashLightEnabled:
-                    Toast.makeText(service, service.getString(R.string.this_device_not_flash),
-                            Toast.LENGTH_LONG).show();
-                    showHomeButton();
                     break;
                 case R.id.TurnOnLocation:
                 case R.id.TurnOffLocation:
@@ -723,18 +724,6 @@ public class ServiceBuilder implements LifecycleObserver {
         } else {
             btnFlashOff.setVisibility(View.VISIBLE);
             btnFlashOn.setVisibility(View.GONE);
-        }
-    }
-
-    private void hasCamera() {
-        if (service.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
-            if (service.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
-                btnFlashEnable.setVisibility(View.GONE);
-            } else {
-                btnFlashEnable.setVisibility(View.VISIBLE);
-                btnFlashOn.setVisibility(View.GONE);
-                btnFlashOff.setVisibility(View.GONE);
-            }
         }
     }
 

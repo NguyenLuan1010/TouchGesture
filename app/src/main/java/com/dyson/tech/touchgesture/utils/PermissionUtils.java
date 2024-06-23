@@ -36,6 +36,18 @@ public class PermissionUtils {
                 .request(callback);
     }
 
+    public static void requestPackageWriteExternalPermission(@NonNull Fragment fragment, RequestCallback callback) {
+        Context context = fragment.requireContext();
+        PermissionX.init(fragment)
+                .permissions(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .onExplainRequestReason((scope, deniedList) -> scope.showRequestReasonDialog(deniedList,
+                        fragment.getString(R.string.permission_write_external_storange),
+                        getButtonPositive(context),
+                        getButtonNegative(context)))
+                .onForwardToSettings(getForwardToSettingsCallback(context))
+                .request(callback);
+    }
+
     public static void requestBluetoothConnectPermission(@NonNull Fragment fragment, RequestCallback callback) {
         Context context = fragment.requireContext();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {

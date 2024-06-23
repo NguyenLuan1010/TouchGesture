@@ -60,6 +60,7 @@
     <string name="permission_button_go_setting">Go setting</string>
     <string name="permission_forward_to_settings">You need to allow necessary permissions in Settings manually</string>
     <string name="permission_explain_read_package_usage_stats">Touch Gesture needs this permission to list the most used apps and suggest apps that use gestures</string>
+    <string name="permission_write_external_storange">Touch Gesture needs this permission to add gesture for each app in device</string>
     <string name="app_usage_stats_permission">App Usage Stats Permission</string>
 
     <string name="permission_explain_bluetooth_connect">Touch Gesture needs this permission to for you can turn on or turn off from this app</string>

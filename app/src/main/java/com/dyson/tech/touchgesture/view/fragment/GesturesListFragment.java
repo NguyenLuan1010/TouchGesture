@@ -20,7 +20,6 @@ import com.dyson.tech.touchgesture.R;
 import com.dyson.tech.touchgesture.adapter.GesturesListAdapter;
 import com.dyson.tech.touchgesture.data.GestureFilesHelper;
 import com.dyson.tech.touchgesture.model.Apps;
-import com.dyson.tech.touchgesture.service.AdsShowingService;
 import com.dyson.tech.touchgesture.utils.ChangeScreen;
 import com.dyson.tech.touchgesture.view.AuthenticationCallBack;
 import com.dyson.tech.touchgesture.view.activity.MainActivity;
@@ -30,8 +29,6 @@ import com.dyson.tech.touchgesture.view.dialog.GestureDetailDialog;
 import com.dyson.tech.touchgesture.view.dialog.LoadingDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 public class GesturesListFragment extends Fragment
@@ -46,6 +43,9 @@ public class GesturesListFragment extends Fragment
 
     private GestureFilesHelper gestureFilesHelper;
     private GesturesListAdapter adapter;
+    private ActionGestureDialog actionGestureDialog;
+    private GestureDetailDialog gestureDetailDialog;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -120,16 +120,39 @@ public class GesturesListFragment extends Fragment
 
     @Override
     public void onClickLayout(Apps app) {
-        GestureDetailDialog dialog = new GestureDetailDialog(app);
-        dialog.show(getActivity().getSupportFragmentManager(), null);
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                gestureDetailDialog = new GestureDetailDialog(app);
+                gestureDetailDialog.show(getActivity().getSupportFragmentManager(), null);
+            }
+        });
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (actionGestureDialog != null && actionGestureDialog.isVisible()) {
+            actionGestureDialog.dismiss();
+        }
+
+        if (gestureDetailDialog != null && gestureDetailDialog.isVisible()) {
+            gestureDetailDialog.dismiss();
+        }
     }
 
     @Override
     public void onClickEdit(Apps app) {
-        ActionGestureDialog dialog = new ActionGestureDialog(getString(R.string.edit_gesture),
-                getString(R.string.please_draw_a_gesture_to_edit_for_open_your_app),
-                app, this);
-        dialog.show(getActivity().getSupportFragmentManager(), null);
+        ActionGestureDialog.OnUpdatedGesture callBack = this;
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                actionGestureDialog = new ActionGestureDialog(getString(R.string.edit_gesture),
+                        getString(R.string.please_draw_a_gesture_to_edit_for_open_your_app),
+                        app, callBack);
+                actionGestureDialog.show(getActivity().getSupportFragmentManager(), null);
+            }
+        });
     }
 
     @Override

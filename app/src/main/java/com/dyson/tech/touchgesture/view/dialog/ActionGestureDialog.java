@@ -23,6 +23,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.dyson.tech.touchgesture.R;
 import com.dyson.tech.touchgesture.data.GestureFilesHelper;
 import com.dyson.tech.touchgesture.model.Apps;
+import com.dyson.tech.touchgesture.utils.PermissionUtils;
 import com.dyson.tech.touchgesture.view.AuthenticationCallBack;
 
 public class ActionGestureDialog extends DialogFragment
@@ -37,11 +38,11 @@ public class ActionGestureDialog extends DialogFragment
     private final String title;
     private final String description;
 
-    public ActionGestureDialog(String title,String description,Apps app,OnUpdatedGesture callback){
+    public ActionGestureDialog(String title, String description, Apps app, OnUpdatedGesture callback) {
         this.app = app;
         this.title = title;
         this.description = description;
-        this.callback= callback;
+        this.callback = callback;
     }
 
     @Nullable
@@ -73,19 +74,24 @@ public class ActionGestureDialog extends DialogFragment
         tvDescription.setText(description);
 
         btnSubmit.setOnClickListener(viewRoot -> {
+            PermissionUtils.requestPackageWriteExternalPermission(this, (allGranted, grantedList, deniedList) -> {
+                if (allGranted) {
+                    onClickSubmit();
+                }
+            });
             onClickSubmit();
         });
     }
 
-    private void onClickSubmit(){
+    private void onClickSubmit() {
         progressBar.setVisibility(View.VISIBLE);
         btnSubmit.setVisibility(View.INVISIBLE);
 
         app.setGesture(gestureOverlayView.getGesture());
-        if(title.equals(getString(R.string.edit_gesture))){
-            gestureFilesHelper.editGesture(app,this);
-        }else if(title.equals(getString(R.string.add_gesture))){
-            gestureFilesHelper.addToFile(app,this);
+        if (title.equals(getString(R.string.edit_gesture))) {
+            gestureFilesHelper.editGesture(app, this);
+        } else if (title.equals(getString(R.string.add_gesture))) {
+            gestureFilesHelper.addToFile(app, this);
         }
     }
 
@@ -103,13 +109,14 @@ public class ActionGestureDialog extends DialogFragment
         progressBar.setVisibility(View.INVISIBLE);
         btnSubmit.setVisibility(View.VISIBLE);
 
-        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), message + " from version name 10.0", Toast.LENGTH_LONG).show();
+        dismiss();
     }
 
     @Override
-    public void editSuccess(Apps updatedApp,String message) {
+    public void editSuccess(Apps updatedApp, String message) {
         Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
-        if(callback != null)
+        if (callback != null)
             callback.updatedGesture(updatedApp);
         dismiss();
     }
@@ -120,7 +127,9 @@ public class ActionGestureDialog extends DialogFragment
         btnSubmit.setVisibility(View.VISIBLE);
 
         Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+        dismiss();
     }
+
     private void customDialog(Dialog dialog) {
         dialog.getWindow().
 
@@ -136,7 +145,7 @@ public class ActionGestureDialog extends DialogFragment
                 setGravity(Gravity.BOTTOM);
     }
 
-    public interface OnUpdatedGesture{
+    public interface OnUpdatedGesture {
         void updatedGesture(Apps updatedApp);
     }
 }
